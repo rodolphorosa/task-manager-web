@@ -4,6 +4,7 @@ import BoardCard from "./board/board-card";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import CreateBoardButton from "./board/create-board";
 
 export default async function Boards () {
     const boards = await boardsService.findAll();
@@ -22,9 +23,7 @@ export default async function Boards () {
                     </div>
                     <div className="flex flex-row gap-2">
                         <Input placeholder="Buscar boards"/>
-                        <Button variant="default" className="px-4 py-3">
-                            Novo board
-                        </Button>
+                        <CreateBoardButton />
                     </div>
                 </div>
                 <div className="flex items-stretch gap-4">

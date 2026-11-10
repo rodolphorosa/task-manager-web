@@ -7,9 +7,11 @@ export default interface Board {
     createdAt: number
     updatedAt: number
     columns: Column[]
+    color: string
 }
 
 export interface CreateBoardRequest {
     title: string
     description?: string
+    color?: string
 }
