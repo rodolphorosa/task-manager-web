@@ -1,4 +1,4 @@
-import BoardPage from "@/src/features/board/board";
+import BoardPage from "@/features/board/board-page";
 import { Suspense } from "react";
 
 interface Props {
