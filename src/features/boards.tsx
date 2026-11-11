@@ -4,7 +4,7 @@ import BoardCard from "./board/board-card";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import CreateBoardButton from "./board/create-board";
+import CreateBoardButton, { CreateBoardCard } from "./board/create-board";
 
 export default async function Boards () {
     const boards = await boardsService.findAll();
@@ -26,7 +26,7 @@ export default async function Boards () {
                         <CreateBoardButton />
                     </div>
                 </div>
-                <div className="flex items-stretch gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {boards.map((board) => {
                         return (
                             <Link 
@@ -38,6 +38,7 @@ export default async function Boards () {
                             </Link>
                         )
                     })}
+                    <CreateBoardCard />
                 </div>
             </div>
         </div>
