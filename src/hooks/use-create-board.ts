@@ -1,21 +1,15 @@
 import { boardsService } from "@/services/boards.service";
 import { CreateBoardRequest } from "@/types/board";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function useCreateBoard() {
-    const [open, setOpen] = useState(false);
-    const router = useRouter();
+    const queryClient = useQueryClient();
     
-    async function createBoard(data: CreateBoardRequest) {
-        try {
-            const board = await boardsService.create(data);
-            setOpen(false);
-            router.push(`/boards/${board.id}`);
-        } catch {
-            alert("Não foi possível criar o board.");
+    return useMutation({
+        mutationFn: (data: CreateBoardRequest) => boardsService.create(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['boards'] })
         }
-    }
-
-    return { open, setOpen, createBoard };
+    });
 }
+
