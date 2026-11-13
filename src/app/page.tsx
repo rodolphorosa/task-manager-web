@@ -1,12 +1,10 @@
-import Image from "next/image";
-import { boardsService } from "../services/boards.service";
-import Boards from "../features/boards";
+import Home from "../features/home";
 import { Suspense } from "react";
 
-export default async function Home() {
+export default async function Page() {
   return (
     <Suspense>
-      <Boards />
+      <Home />
     </Suspense>
   );
 }

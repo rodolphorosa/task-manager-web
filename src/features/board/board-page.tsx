@@ -1,10 +1,12 @@
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { boardsService } from "@/services/boards.service";
 import Board from "@/types/board";
 import Column from "@/types/column";
 import Task from "@/types/task";
 import { Plus } from "lucide-react";
+import TaskCard from "../task/task-card";
 
 function BoardContent({ board }: { board: Board }) {
     return (
@@ -12,6 +14,9 @@ function BoardContent({ board }: { board: Board }) {
             {board.columns.map((column) => 
                 <ColumnComponent column={column} />
             )}
+            <Button variant="outline" className="border border-dashed">
+                Nova coluna
+            </Button>
         </div>
     )
 }
@@ -46,10 +51,7 @@ function ColumnComponent({ column }: { column: Column }) {
 
 function TaskComponent({ task }: { task: Task }) {
     return (
-        <div className="flex flex-col gap-2 p-2 rounded-xl border border-border">
-            <span>{task.title}</span>
-            <span>{task.description}</span>
-        </div>
+        <TaskCard task={task}/>
     )
 }
 
