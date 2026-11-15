@@ -7,6 +7,15 @@ import { cn } from "cn";
 
 export default function BoardCard({ board }: { board: Board }) {
     const colorClass = boardColors[board.color];
+
+    function formatColumnsCount(count: number) {
+        return count > 0 ? `${count} colunas`: 'Nenhuma coluna';
+
+    }
+
+    function formatTasksCount(count: number) {
+        return count > 0 ? `${count} tarefas`: 'Nenhuma tarefa';
+    }
     
     return (
         <Card className="overflow-hidden gap-0 pt-0">
@@ -19,17 +28,17 @@ export default function BoardCard({ board }: { board: Board }) {
                     {board.description}
                 </p>
                 <div>
-                    <span>4 colunas</span>{" \u00B7 "}
-                    <span>12 tasks</span> 
+                    <span>{formatColumnsCount(board.columnsCount)}</span>{" \u00B7 "}
+                    <span>{formatTasksCount(board.tasksCount)}</span> 
                 </div>
                 <Progress 
-                    value={25} 
+                    value={board.completedPercentage} 
                     className={cn(
                         "bg-gray-200",
                         progressColors[board.color]
                     )}
                 />
-                <p className="text-sm text-muted-foreground">25% concluído</p>
+                <p className="text-sm text-muted-foreground">{board.completedPercentage}% concluído</p>
                 <p className="text-sm text-muted-foreground self-end">Atualizado hoje</p>
             </CardContent>
         </Card>

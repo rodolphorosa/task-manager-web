@@ -8,6 +8,9 @@ export default interface Board {
     updatedAt: number
     columns: Column[]
     color: string
+    columnsCount: number
+    tasksCount: number
+    completedPercentage: number
 }
 
 export interface CreateBoardRequest {
